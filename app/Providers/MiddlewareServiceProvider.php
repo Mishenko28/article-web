@@ -23,6 +23,9 @@ class MiddlewareServiceProvider extends ServiceProvider
         $router->aliasMiddleware('portal.auth', \App\Laravel\Middlewares\Portal\Authenticate::class);
         $router->aliasMiddleware('portal.guest', \App\Laravel\Middlewares\Portal\RedirectIfAuthenticated::class);
 
+        $router->aliasMiddleware('backoffice.auth', \App\Laravel\Middlewares\Backoffice\Authenticate::class);
+        $router->aliasMiddleware('backoffice.guest', \App\Laravel\Middlewares\Backoffice\RedirectIfAuthenticated::class);
+
         $router->aliasMiddleware('web.auth', \App\Laravel\Middlewares\Web\Authenticate::class);
         $router->aliasMiddleware('web.guest', \App\Laravel\Middlewares\Web\RedirectIfAuthenticated::class);
         $router->aliasMiddleware('throttle', \Illuminate\Routing\Middleware\ThrottleRequests::class);

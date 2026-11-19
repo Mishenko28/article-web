@@ -13,6 +13,7 @@
             <input class="px-1 form-control rounded-end-pill border-start-0" type="search" placeholder="Search"
                 aria-label="Search" />
         </form>
+
         <hr class="bg-dark" style="width: 1.5px; height: 30px;">
 
         </hr>
