@@ -27,13 +27,13 @@
                     </li>
 
                     @auth('web')
-                        <li class="d-lg-none d-flex gap-2 nav-item">
+                        <li class="d-lg-none d-flex gap-2 mb-2 nav-item">
                             <a class="btn btn-primary" href="{{ route('portal.home.index') }}">Portal</a>
                         </li>
                     @endauth
                     @auth('admin')
-                        <li class="d-lg-none d-flex gap-2 nav-item">
-                            <a class="btn btn-primary" href="{{ route('backoffice.dashboard.index') }}">Backoffice</a>
+                        <li class="d-lg-none d-flex gap-2 mb-2 nav-item">
+                            <a class="btn btn-dark" href="{{ route('backoffice.dashboard.index') }}">Backoffice</a>
                         </li>
                     @endauth
                     @guest('admin')
@@ -47,29 +47,31 @@
                 </ul>
             </div>
 
-            @auth('web')
-                <div class="d-none d-lg-flex gap-2 gap-2 navbar-nav align-items-center">
-                    <div class="d-lg-flex flex-column d-none align-items-end">
-                        <small class="fw-medium text-nowrap">
-                            {{ auth('web')->user()->first_name }}
-                            {{ auth('web')->user()->last_name }}
-                        </small>
-                        <small class="text-muted">{{ auth('web')->user()->email }}</small>
+            <div class="d-none d-lg-flex flex-column align-items-end">
+                @auth('web')
+                    <div class="d-flex gap-2 gap-2 navbar-nav align-items-center">
+                        <div class="d-lg-flex flex-column d-none align-items-end">
+                            <small class="fw-medium text-nowrap">
+                                {{ auth('web')->user()->first_name }}
+                                {{ auth('web')->user()->last_name }}
+                            </small>
+                            <small class="text-muted">{{ auth('web')->user()->email }}</small>
+                        </div>
+                        <a class="nav-item btn btn-primary" href="{{ route('portal.home.index') }}">Portal</a>
                     </div>
-                    <a class="nav-item btn btn-primary" href="{{ route('portal.home.index') }}">Portal</a>
-                </div>
-            @endauth
-            @auth('admin')
-                <div class="d-none d-lg-flex gap-2 gap-2 navbar-nav align-items-center">
-                    <div class="d-lg-flex flex-column d-none align-items-end">
-                        <small class="fw-medium text-nowrap">
-                            {{ auth('admin')->user()->full_name }}
-                        </small>
-                        <small class="text-muted">{{ auth('admin')->user()->email }}</small>
+                @endauth
+                @auth('admin')
+                    <div class="d-flex gap-2 gap-2 navbar-nav align-items-center">
+                        <div class="d-lg-flex flex-column d-none align-items-end">
+                            <small class="fw-medium text-nowrap">
+                                {{ auth('admin')->user()->full_name }}
+                            </small>
+                            <small class="text-muted">{{ auth('admin')->user()->email }}</small>
+                        </div>
+                        <a class="nav-item btn btn-dark" href="{{ route('backoffice.dashboard.index') }}">Backoffice</a>
                     </div>
-                    <a class="nav-item btn btn-primary" href="{{ route('backoffice.dashboard.index') }}">Backoffice</a>
-                </div>
-            @endauth
+                @endauth
+            </div>
             @guest('admin')
                 @guest('web')
                     <div class="d-none d-lg-flex gap-2 gap-2 navbar-nav">

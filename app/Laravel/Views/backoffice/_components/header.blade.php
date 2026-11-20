@@ -7,17 +7,7 @@
     </div>
 
     <div class="d-flex gap-2 align-items-center align-self-end align-self-sm-center">
-        <form class="input-group">
-            <i class="input-group-text rounded-start-pill text-muted bg-body bi bi-search"></i>
-            <input class="px-1 form-control rounded-end-pill border-start-0" type="search" placeholder="Search"
-                aria-label="Search" />
-        </form>
-
-        <hr class="bg-dark" style="width: 1.5px; height: 30px;">
-
-        </hr>
-
-        <div class="d-lg-flex flex-column d-none align-items-end">
+        <div class="d-flex flex-column align-items-end">
             <small class="fw-medium text-nowrap">
                 {{ auth('admin')->user()->full_name }}
             </small>

@@ -1,6 +1,8 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 w-100 shadow h-100 bg-light text-nowrap sidebar">
     <div class="d-flex align-items-center">
-        <span class="flex-grow-1 fs-4 text-decoration-none">BLOGS.PH | Portal</span>
+        <span href="" class="flex-grow-1 fs-4 text-decoration-none">
+            <a class="text-decoration-none text-dark" href="{{ route('web.home') }}">BLOGS.PH</a> | Portal
+        </span>
         <button
             class="d-flex d-md-none text-muted border-0 rounded justify-content-center align-items-center bg-dark-subtle sidebar-toggle">
             <i class="bi bi-arrow-bar-left"></i>
