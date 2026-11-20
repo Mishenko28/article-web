@@ -14,7 +14,7 @@
                 <form method="POST" class="form">
                     @csrf
 
-                    <div class="col-sm-4 mb-3">
+                    <div class="mb-3">
                         <label for="edit-fullname" class="form-label">
                             Full Name
                             <span>*</span>

@@ -3,6 +3,7 @@
 namespace App\Laravel\Controllers\Backoffice;
 
 use App\Laravel\Models\User;
+use App\Laravel\Requests\Backoffice\UserUpdateRequest;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +28,7 @@ class UserManagementController extends Controller
         return view('backoffice.user-management.edit', $this->data);
     }
 
-    public function update(PageRequest $request, $id = null)
+    public function update(UserUpdateRequest $request, $id = null)
     {
         DB::beginTransaction();
 
