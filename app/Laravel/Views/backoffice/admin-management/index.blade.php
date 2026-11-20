@@ -27,8 +27,33 @@
                                                 class="col btn btn-sm btn-primary actions">Edit</a>
                                             <a href="{{ route('backoffice.admin-management.show', $record->id) }}"
                                                 class="col btn btn-sm btn-info actions">View</a>
-                                            <a class="col btn btn-sm btn-danger actions"
-                                                href="{{ route('backoffice.admin-management.destroy', $record->id) }}">Delete</a>
+
+                                            <button type="button" class="col btn btn-sm btn-danger actions"
+                                                data-bs-toggle="modal" data-bs-target="#delete-btn{{ $record->id }}">
+                                                Delete
+                                            </button>
+
+                                            <div class="modal fade" id="delete-btn{{ $record->id }}" tabindex="-1"
+                                                data-bs-keyboard="false" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalTitleId">
+                                                                Do you want to delete this admin?
+                                                            </h5>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <a href="{{ route('backoffice.admin-management.destroy', $record->id) }}"
+                                                                class="btn btn-danger">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

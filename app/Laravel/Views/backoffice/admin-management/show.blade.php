@@ -24,10 +24,30 @@
                         <i class="bi bi-pencil-square"></i>
                         Edit
                     </a>
-                    <a href="{{ route('backoffice.admin-management.destroy', $record->id) }}" class="col btn btn-danger ">
-                        <i class="bi bi-trash"></i>
+
+                    <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-btn">
                         Delete
-                    </a>
+                    </button>
+
+                    <div class="modal fade" id="delete-btn" tabindex="-1" data-bs-keyboard="false" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitleId">
+                                        Do you want to delete this admin?
+                                    </h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <a href="{{ route('backoffice.admin-management.destroy', $record->id) }}"
+                                        class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
