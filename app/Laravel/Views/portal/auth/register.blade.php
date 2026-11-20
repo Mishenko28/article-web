@@ -8,7 +8,6 @@
     <title>{{ 'BLOGS.PH Portal | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
 
     <style>
         main {
@@ -36,32 +35,61 @@
 
                 <div class="row g-2">
                     <div class="col-sm-4 mb-3">
-                        <label for="register-firstname" class="form-label">First Name</label>
-                        <input required type="text" class="form-control" name="first_name" id="register-firstname"
-                            placeholder="Juan" />
+                        <label for="register-firstname" class="form-label">
+                            First Name
+                            <span>*</span>
+                        </label>
+                        <input required type="text" class="form-control @error('first_name') is-invalid @enderror"
+                            name="first_name" id="register-firstname" placeholder="Juan" />
+                        @error('first_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
                     <div class="col-sm-4 mb-3">
                         <label for="register-middlename" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" name="middle_name" id="register-middlename"
-                            placeholder="Tolentino" />
+                        <input type="text" class="form-control @error('middle_name') is-invalid @enderror"
+                            name="middle_name" id="register-middlename" placeholder="Tolentino" />
+                        @error('middle_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="col-sm-4 mb-3">
-                        <label for="register-lastname" class="form-label">Last Name</label>
-                        <input required type="text" class="form-control" name="last_name" id="register-lastname"
-                            placeholder="Dela Cruz" />
+                        <label for="register-lastname" class="form-label">
+                            Last Name
+                            <span>*</span>
+                        </label>
+                        <input required type="text" class="form-control @error('last_name') is-invalid @enderror"
+                            name="last_name" id="register-lastname" placeholder="Dela Cruz" />
+                        @error('last_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="register-email" class="form-label">Email</label>
-                    <input required type="email" class="form-control" name="email" id="register-email"
-                        placeholder="juandelacruz@email.com" />
+                    <label for="register-email" class="form-label">
+                        Email
+                        <span>*</span>
+                    </label>
+                    <input required type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" id="register-email" placeholder="juandelacruz@email.com" />
+                    @error('email')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label for="register-password" class="form-label">Password</label>
-                    <input required type="password" class="form-control" name="password" id="register-password" />
+                    <label for="register-password" class="form-label">
+                        Password
+                        <span>*</span>
+                    </label>
+                    <input required type="password" class="form-control @error('password') is-invalid @enderror"
+                        name="password" id="register-password" />
+                    @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <button type="submit" class="mb-3 btn btn-primary submit-btn">Create Account</button>
@@ -96,9 +124,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

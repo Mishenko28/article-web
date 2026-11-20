@@ -8,7 +8,6 @@
     <title>{{ 'BLOGS.PH Admin | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
 
     <style>
         main {
@@ -31,20 +30,39 @@
             <p class="text-muted">Enter your details below to create your account.</p>
 
             <div class="mb-3">
-                <label for="admin-register-fullname" class="form-label">Full Name</label>
-                <input required type="text" class="form-control" name="full_name" id="admin-register-fullname"
-                    placeholder="Juan Dela Cruz" />
+                <label for="admin-register-fullname" class="form-label">
+                    Full Name
+                    <span>*</span>
+                </label>
+                <input required type="text" class="form-control @error('full_name') is-invalid @enderror"
+                    name="full_name" id="admin-register-fullname" placeholder="Juan Dela Cruz" />
+                @error('full_name')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="admin-register-email" class="form-label">Email</label>
-                <input required type="email" class="form-control" name="email" id="admin-register-email"
-                    placeholder="juandelacruz@email.com" />
+                <label for="admin-register-email" class="form-label">
+                    Email
+                    <span>*</span>
+                </label>
+                <input required type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    id="admin-register-email" placeholder="juandelacruz@email.com" />
+                @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="admin-register-password" class="form-label">Password</label>
-                <input required type="password" class="form-control" name="password" id="admin-register-password" />
+                <label for="admin-register-password" class="form-label">
+                    Password
+                    <span>*</span>
+                </label>
+                <input required type="password" class="form-control @error('password') is-invalid @enderror"
+                    name="password" id="admin-register-password" />
+                @error('password')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <button type="submit" class="mb-3 btn btn-primary submit-btn">Create Account</button>
@@ -79,9 +97,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

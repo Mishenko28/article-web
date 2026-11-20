@@ -8,7 +8,6 @@
     <title>{{ 'BLOGS.PH Portal | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
 
     <style>
         main {
@@ -35,14 +34,27 @@
                 <p class="text-muted">Welcome back! please enter your details.</p>
 
                 <div class="mb-3">
-                    <label for="login-email" class="form-label">Email</label>
-                    <input required type="email" class="form-control" name="email" id="login-email"
-                        placeholder="juandelacruz@email.com" />
+                    <label for="login-email" class="form-label">
+                        Email
+                        <span>*</span>
+                    </label>
+                    <input required type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" id="login-email" placeholder="juandelacruz@email.com" />
+                    @error('email')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label for="login-password" class="form-label">Password</label>
-                    <input required type="password" class="form-control" name="password" id="login-password" />
+                    <label for="login-password" class="form-label">
+                        Password
+                        <span>*</span>
+                    </label>
+                    <input required type="password" class="form-control @error('password') is-invalid @enderror"
+                        name="password" id="login-password" />
+                    @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <button type="submit" class="mb-3 btn btn-primary">Login</button>
@@ -53,9 +65,7 @@
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

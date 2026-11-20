@@ -3,7 +3,8 @@
 namespace App\Laravel\Controllers\Backoffice;
 
 use App\Laravel\Models\Admin;
-use App\Laravel\Requests\PageRequest;
+use App\Laravel\Requests\Backoffice\LoginRequest;
+use App\Laravel\Requests\Backoffice\RegisterRequest;
 use Illuminate\Support\Facades\DB;
 
 class AuthenticationController extends Controller
@@ -25,7 +26,7 @@ class AuthenticationController extends Controller
         return redirect()->route('backoffice.auth.login');
     }
 
-    public function authenticate(PageRequest $request)
+    public function authenticate(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -47,7 +48,7 @@ class AuthenticationController extends Controller
         return view('backoffice.auth.register', $this->data);
     }
 
-    public function store(PageRequest $request)
+    public function store(RegisterRequest $request)
     {
         DB::beginTransaction();
 

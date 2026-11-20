@@ -8,7 +8,6 @@
     <title>{{ 'BLOGS.PH Admin | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
 
     <style>
         main {
@@ -22,23 +21,36 @@
 </head>
 
 <body>
-    <main class="d-flex flex-column gap-2 p-3 justify-content-center align-items-center">
+    <main class="d-flex flex-column p-3 gap-2 justify-content-center align-items-center">
         @include('backoffice._components.notifications')
-        <form method="POST" action="" class="p-3 form border rounded">
+        <form method="POST" class="p-3 form border rounded">
             @csrf
 
             <h1>Admin Login</h1>
             <p class="text-muted">Welcome back! please enter your details.</p>
 
             <div class="mb-3">
-                <label for="admin-login-email" class="form-label">Email</label>
-                <input required type="email" class="form-control" name="email" id="admin-login-email"
-                    placeholder="juandelacruz@email.com" />
+                <label for="admin-login-email" class="form-label">
+                    Email
+                    <span>*</span>
+                </label>
+                <input required type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    id="admin-login-email" placeholder="juandelacruz@email.com" />
+                @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="admin-login-password" class="form-label">Password</label>
-                <input required type="password" class="form-control" name="password" id="admin-login-password" />
+                <label for="admin-login-password" class="form-label">
+                    Password
+                    <span>*</span>
+                </label>
+                <input required type="password" class="form-control @error('password') is-invalid @enderror"
+                    name="password" id="admin-login-password" />
+                @error('password')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <button type="submit" class="mb-3 btn btn-primary">Login</button>
@@ -48,9 +60,7 @@
         </form>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
