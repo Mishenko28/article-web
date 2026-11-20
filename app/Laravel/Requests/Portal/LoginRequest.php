@@ -9,7 +9,7 @@ class LoginRequest extends RequestManager
     public function rules()
     {
         $rules = [
-            'email'       => 'required|email|unique:users,email',
+            'email'       => 'required|email',
             'password'    => 'required|string|min:8',
         ];
 
@@ -21,7 +21,6 @@ class LoginRequest extends RequestManager
         return [
             'email.required'       => 'The email address is required.',
             'email.email'          => 'Please enter a valid email address.',
-            'email.unique'         => 'This email address is already registered.',
 
             'password.required'    => 'The password is required.',
             'password.string'      => 'The password must be a valid string.',
