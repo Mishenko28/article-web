@@ -16,5 +16,7 @@ Route::group([
         Route::get('logout', ['as' => 'logout', 'uses' => 'AuthenticationController@logout']);
         include_once app_path('Laravel/Routes/Backoffice/Dashboard.php');
         include_once app_path('Laravel/Routes/Backoffice/Profile.php');
+        include_once app_path('Laravel/Routes/Backoffice/UserManagementController.php');
+        include_once app_path('Laravel/Routes/Backoffice/AdminManagementController.php');
     });
 });

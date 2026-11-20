@@ -34,16 +34,18 @@
     <small class="ps-3 mb-2 fw-medium text-primary">ACCOUNT MANAGEMENT</small>
     <ul class="flex-column nav">
         <li class="nav-item">
-            <a href="#" class="nav-link text-light rounded {{ $title_page === 'User Accounts' ? 'active' : '' }}"
-                {{ $title_page === 'User Accounts' ? "aria-current='page'" : '' }}>
+            <a href="{{ route('backoffice.user-management.index') }}"
+                class="nav-link text-light rounded {{ $title_page === 'User Management' ? 'active' : '' }}"
+                {{ $title_page === 'User Management' ? "aria-current='page'" : '' }}>
                 <i class="bi bi-house"></i>
                 User Accounts
             </a>
         </li>
 
         <li>
-            <a href="#" class="nav-link text-light rounded {{ $title_page === 'Admin Accounts' ? 'active' : '' }}"
-                {{ $title_page === 'Admin Accounts' ? "aria-current='page'" : '' }}>
+            <a href="{{ route('backoffice.admin-management.index') }}"
+                class="nav-link text-light rounded {{ $title_page === 'Admin Management' ? 'active' : '' }}"
+                {{ $title_page === 'Admin Management' ? "aria-current='page'" : '' }}>
                 <i class="bi bi-person-square"></i>
                 Admin Accounts
             </a>
