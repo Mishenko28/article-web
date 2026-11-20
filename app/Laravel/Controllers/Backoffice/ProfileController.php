@@ -3,6 +3,7 @@
 namespace App\Laravel\Controllers\Backoffice;
 
 use App\Laravel\Models\Admin;
+use App\Laravel\Requests\Backoffice\ProfileUpdateRequest;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,7 @@ class ProfileController extends Controller
         return view('backoffice.profile.edit', $this->data);
     }
 
-    public function update(PageRequest $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user_id = auth('admin')->user()->id;
         DB::beginTransaction();

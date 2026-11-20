@@ -3,7 +3,7 @@
 namespace App\Laravel\Controllers\Portal;
 
 use App\Laravel\Models\User;
-use App\Laravel\Requests\PageRequest;
+use App\Laravel\Requests\Portal\ProfileUpdateRequest;
 use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
@@ -25,7 +25,7 @@ class ProfileController extends Controller
         return view('portal.profile.edit', $this->data);
     }
 
-    public function update(PageRequest $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user_id = auth('web')->user()->id;
         DB::beginTransaction();
