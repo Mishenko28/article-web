@@ -51,6 +51,16 @@
         flex-shrink: 0;
     }
 
+    .avatar-image-sm {
+        aspect-ratio: 1;
+        max-width: 100px;
+    }
+
+    .avatar-image-lg {
+        aspect-ratio: 1;
+        max-width: 200px;
+    }
+
     @media (max-width: 768px) {
         .sidebar {
             position: fixed;

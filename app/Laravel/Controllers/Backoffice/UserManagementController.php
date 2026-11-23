@@ -6,6 +6,7 @@ use App\Laravel\Models\User;
 use App\Laravel\Requests\Backoffice\UserUpdateRequest;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserManagementController extends Controller
 {
@@ -38,20 +39,28 @@ class UserManagementController extends Controller
             $user->middle_name = strtoupper($request->input('middle_name'));
             $user->last_name = strtoupper($request->input('last_name'));
             $user->email = strtolower($request->input('email'));
-            $request->input('password') && $user->password = bcrypt($request->input('password'));
+
+            if ($request->hasFile('avatar')) {
+                $user->avatar_path = $request->file('avatar')->store('avatar/user', 'public');
+            }
+
+            if ($request->filled('password')) {
+                $user->password = bcrypt($request->input('password'));
+            }
+
             $user->save();
 
             DB::commit();
-
-            session()->flash('notification-status', "success");
-            session()->flash('notification-msg', "Successfully update.");
-            return redirect()->route('backoffice.user-management.index');
         } catch (\Exception $e) {
             DB::rollback();
             session()->flash('notification-status', "failed");
             session()->flash('notification-msg', "Server error. Please try again later.");
             return redirect()->back();
         }
+
+        session()->flash('notification-status', "success");
+        session()->flash('notification-msg', "Successfully updated.");
+        return redirect()->route('backoffice.user-management.index');
     }
 
     public function show(PageRequest $request, $id = null)
@@ -63,8 +72,16 @@ class UserManagementController extends Controller
 
     public function destroy(PageRequest $request, $id = null)
     {
-        $this->data['record'] = User::destroy($id);
+        $record = User::find($id);
 
+        User::destroy($id);
+
+        if ($record && $record->avatar_path) {
+            Storage::disk('public')->delete($record->avatar_path);
+        }
+
+        session()->flash('notification-status', "success");
+        session()->flash('notification-msg', "Successfully deleted.");
         return redirect()->route('backoffice.user-management.index');
     }
 }

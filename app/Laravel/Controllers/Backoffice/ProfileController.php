@@ -6,6 +6,7 @@ use App\Laravel\Models\Admin;
 use App\Laravel\Requests\Backoffice\ProfileUpdateRequest;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -29,25 +30,38 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request)
     {
         $user_id = auth('admin')->user()->id;
+
         DB::beginTransaction();
 
         try {
             $user = Admin::find($user_id);
             $user->full_name = strtoupper($request->input('full_name'));
             $user->email = strtolower($request->input('email'));
-            $request->input('password') && $user->password = bcrypt($request->input('password'));
+
+            if ($request->hasFile('avatar')) {
+                if ($user->avatar_path) {
+                    Storage::disk('public')->delete($user->avatar_path);
+                }
+
+                $user->avatar_path = $request->file('avatar')->store('avatar/admin', 'public');;
+            }
+
+            if ($request->filled('password')) {
+                $user->password = bcrypt($request->input('password'));
+            }
+
             $user->save();
 
             DB::commit();
-
-            session()->flash('notification-status', "success");
-            session()->flash('notification-msg', "Successfully update.");
-            return redirect()->route('backoffice.profile.index');
         } catch (\Exception $e) {
             DB::rollback();
             session()->flash('notification-status', "failed");
             session()->flash('notification-msg', "Server error. Please try again later.");
             return redirect()->back();
         }
+
+        session()->flash('notification-status', "success");
+        session()->flash('notification-msg', "Successfully updated.");
+        return redirect()->route('backoffice.profile.index');
     }
 }

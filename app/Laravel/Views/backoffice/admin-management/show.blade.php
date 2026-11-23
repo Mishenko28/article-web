@@ -11,13 +11,23 @@
                 User Account Details
             </div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label class="text-muted">Full Name</label>
-                    <p class="card-text fw-medium">{{ $record->full_name }}</p>
-                </div>
-                <div class="mb-3">
-                    <label class="text-muted">Email</label>
-                    <p class="card-text fw-medium">{{ "$record->email" }}</p>
+                <div class="d-flex flex-column flex-md-row gap-md-5 mb-3">
+                    <div class="mb-3">
+                        <label class="text-muted">Profile Photo</label>
+                        <img src="{{ $record->avatar_path ? asset('storage/' . $record->avatar_path) : asset('assets/images/default_avatar.jpg') }}"
+                            alt="{{ $record->full_name }}"
+                            class="d-block border rounded-circle border-dark-subtle object-fit-cover img-fluid avatar-image-sm">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label class="text-muted">Full Name</label>
+                            <p class="card-text fw-medium">{{ $record->full_name }}</p>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="text-muted">Email</label>
+                            <p class="card-text fw-medium">{{ $record->email }}</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <a href="{{ route('backoffice.admin-management.edit', $record->id) }}" class="col btn btn-primary">

@@ -1,3 +1,5 @@
+@php($authUser = auth('web')->user())
+
 <header class="d-flex flex-column flex-sm-row px-sm-3 justify-content-between align-items-center sticky-top">
     <div class="d-flex gap-2 align-items-center align-self-start align-self-sm-center">
         <button
@@ -8,12 +10,16 @@
     </div>
 
     <div class="d-flex gap-2 align-items-center align-self-end align-self-sm-center">
-        <div class="d-flex flex-column align-items-end">
-            <small class="fw-medium text-nowrap">
-                {{ auth('web')->user()->first_name }}
-                {{ auth('web')->user()->last_name }}
-            </small>
-            <small class="text-muted">{{ auth('web')->user()->email }}</small>
+        <div class="d-flex gap-2 align-items-center">
+            <div class="d-flex flex-column align-items-end">
+                <small class="fw-medium text-nowrap">
+                    {{ $authUser->first_name }}
+                    {{ $authUser->last_name }}
+                </small>
+                <small class="text-muted">{{ $authUser->email }}</small>
+            </div>
+            <img src="{{ $authUser->avatar_path ? asset('storage/' . $authUser->avatar_path) : asset('assets/images/default_avatar.jpg') }}"
+                alt="" class="border rounded-circle border-dark-subtle object-fit-cover img-fluid avatar">
         </div>
 
         <div class="dropdown">
