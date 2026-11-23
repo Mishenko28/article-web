@@ -6,6 +6,7 @@ namespace App\Laravel\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
@@ -17,6 +18,13 @@ class Admin extends Authenticatable implements JWTSubject
 
     use Notifiable;
 
+    use SoftDeletes;
+    /**
+     * Enable soft delete in table
+     * @var boolean
+     */
+
+    protected $softDelete = true;
     /**
      * The database table used by the model.
      *
