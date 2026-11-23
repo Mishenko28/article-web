@@ -39,6 +39,10 @@ class AdminManagementController extends Controller
             $admin->email = strtolower($request->input('email'));
 
             if ($request->hasFile('avatar')) {
+                if ($admin->avatar_path) {
+                    Storage::disk('public')->delete($admin->avatar_path);
+                }
+
                 $admin->avatar_path = $request->file('avatar')->store('avatar/admin', 'public');
             }
 

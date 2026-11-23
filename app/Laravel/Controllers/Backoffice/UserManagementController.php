@@ -41,6 +41,10 @@ class UserManagementController extends Controller
             $user->email = strtolower($request->input('email'));
 
             if ($request->hasFile('avatar')) {
+                if ($user->avatar_path) {
+                    Storage::disk('public')->delete($user->avatar_path);
+                }
+
                 $user->avatar_path = $request->file('avatar')->store('avatar/user', 'public');
             }
 
