@@ -69,6 +69,9 @@
                     </table>
                 </div>
             </div>
+            <div class="card-footer">
+                {{ $records->links() }}
+            </div>
         </div>
     </div>
 @endsection
