@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => "articles", 'as' => 'article.'], function () {
+Route::group(['prefix' => "articles", 'as' => 'articles.'], function () {
     Route::get('/', ['uses' => 'ArticleController@index']);
     Route::get('info/{id?}', ['uses' => 'ArticleController@show']);
     Route::post('create', ['uses' => 'ArticleController@store']);

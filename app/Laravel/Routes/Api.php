@@ -19,5 +19,6 @@ Route::group([
         });
 
         include_once app_path('Laravel/Routes/API/Articles.php');
+        include_once app_path('Laravel/Routes/API/CMS.php');
     });
 });
