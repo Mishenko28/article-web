@@ -40,6 +40,30 @@
         flex-shrink: 0;
     }
 
+    .article-card .article-excerpt {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article-card .card-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .article-card .card-body .btn-link {
+        margin-top: auto;
+    }
+
+    @media (max-width: 991.98px) {
+        .featured-article .card-title {
+            font-size: 2rem !important;
+            line-height: 1.15 !important;
+        }
+    }
+
     .intro-section .intro-title {
         letter-spacing: 0.16em;
     }
@@ -50,5 +74,13 @@
 
     .intro-section .subtitle-2 {
         max-width: 620px;
+    }
+
+    .newsletter-eyebrow {
+        letter-spacing: 0.16em;
+    }
+
+    .newsletter-copy {
+        max-width: 520px;
     }
 </style>
