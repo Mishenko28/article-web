@@ -12,33 +12,40 @@ class RegisterRequest extends ApiRequestManager
      *
      * @return array
      */
-    public function rules(){
-
-        return [
-            'email' => "required|email:rfc,strict,dns,filter|unique_email:0",
-            'name' => "required|between:2,100|regex:/^[A-Za-z0-9 \s]+$/",
-            'password' => [
-                'required',
-                'between:6,20',
-                'password_format',
-                'confirmed'
-            ],
+    public function rules()
+    {
+        $rules = [
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
         ];
 
+        return $rules;
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'required' => "Field is required.",
-            'regex' => "Invalid data.",
-            'name.between' => "Firstname should be between 2 to 100 characters only.",
-            'contact_number.phone' => "Invalid contact number format.",
-            'password.between' => "Password should be between 6 to 20 characters",
-            'password_format' => "Password must be 6-20 characters long, contain at least one uppercase letter, and at least one special character.",
-            'password.confirmed' => "Password mismatch",
-            'unique_phone' => "Phone Number already used.",
-            'unique_email' => "Email address already used.",
+            'first_name.required' => 'The first name is required.',
+            'first_name.string' => 'The first name must be a valid string.',
+            'first_name.max' => 'The first name cannot be greater than 255 characters.',
 
+            'middle_name.string' => 'The middle name must be a valid string.',
+            'middle_name.max' => 'The middle name cannot be greater than 255 characters.',
+
+            'last_name.required' => 'The last name is required.',
+            'last_name.string' => 'The last name must be a valid string.',
+            'last_name.max' => 'The last name cannot be greater than 255 characters.',
+
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email address is already registered.',
+
+            'password.required' => 'The password is required.',
+            'password.string' => 'The password must be a valid string.',
+            'password.min' => 'The password must be at least 8 characters.',
         ];
     }
 }

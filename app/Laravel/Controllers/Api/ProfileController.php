@@ -5,6 +5,7 @@ namespace App\Laravel\Controllers\Api;
 /*
  * Request Validator
  */
+
 use App\Laravel\Requests\PageRequest;
 use App\Laravel\Traits\ResponseGenerator;
 
@@ -15,7 +16,7 @@ class ProfileController extends Controller
 {
     use ResponseGenerator;
 
-    protected $data, $guard,$response, $response_code, $transformer;
+    protected $data, $guard, $response, $response_code, $transformer;
 
     public function __construct()
     {
@@ -30,10 +31,9 @@ class ProfileController extends Controller
         $this->response['status'] = TRUE;
         $this->response['status_code'] = "PROFILE_DETAIL";
         $this->response['msg'] = "Profile information";
-        $this->response['data'] = $this->transformer->transform($user, new UserTransformer,'item');
+        $this->response['data'] = $this->transformer->transform($user, new UserTransformer, 'item');
         $this->response_code = 200;
         callback:
         return response()->json($this->api_response($this->response), $this->response_code);
-
     }
 }

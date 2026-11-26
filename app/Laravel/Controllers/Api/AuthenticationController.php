@@ -13,7 +13,6 @@ use App\Laravel\Traits\ResponseGenerator;
 
 use App\Laravel\Transformers\{UserTransformer, TransformerManager};
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 /* App Classes
  */
@@ -22,7 +21,7 @@ class AuthenticationController extends Controller
 {
     use ResponseGenerator;
 
-    protected $data, $guard,$response, $response_code, $transformer;
+    protected $data, $guard, $response, $response_code, $transformer;
 
     public function __construct()
     {
@@ -37,14 +36,16 @@ class AuthenticationController extends Controller
         $this->response_code = 400;
     }
 
-    public function register(RegisterRequest $request,$format = NULL){
-
+    public function register(RegisterRequest $request)
+    {
         DB::beginTransaction();
-        try{
 
+        try {
             $user = new User();
+            $user->first_name = strtoupper($request->input('first_name'));
+            $user->middle_name = strtoupper($request->input('middle_name'));
+            $user->last_name = strtoupper($request->input('last_name'));
             $user->email = strtolower($request->input('email'));
-            $user->name = strtoupper($request->input('name'));
             $user->password = bcrypt($request->input('password'));
             $user->save();
 
@@ -54,7 +55,7 @@ class AuthenticationController extends Controller
             $this->response['status_code'] = "REGISTERED";
             $this->response['msg'] = "Successfully registered.";
             $this->response_code = 201;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             $this->response['status'] = FALSE;
             $this->response['status_code'] = "SERVER_ERROR";
@@ -66,16 +67,12 @@ class AuthenticationController extends Controller
         return response()->json($this->api_response($this->response), $this->response_code);
     }
 
-    public function login(PageRequest $request){
+    public function login(PageRequest $request)
+    {
         $password  = $request->input('password');
-        $value =  strtolower($request->input('email'));
+        $email =  strtolower($request->input('email'));
 
-        /* Replace else value to username if username exist */
-        $field = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'email';
-
-        $password  = $request->input('password');
-
-        if(!$token = auth($this->guard)->attempt([$field => $value,'password' => $password])){
+        if (!$token = auth($this->guard)->attempt(['email' => $email, 'password' => $password])) {
             $this->response['status'] = FALSE;
             $this->response['status_code'] = "UNAUTHORIZED";
             $this->response['msg'] = "Invalid account credentials.";
@@ -87,32 +84,22 @@ class AuthenticationController extends Controller
 
         $this->response['status'] = TRUE;
         $this->response['status_code'] = "LOGIN_SUCCESS";
-        $this->response['msg'] = "Hi {$user->name}!";
+        $this->response['msg'] = "Hi {$user->first_name}!";
         $this->response['token'] = $token;
         $this->response['token_type'] = "Bearer";
-        $this->response['data'] = $this->transformer->transform($user, new UserTransformer,'item');
+        $this->response['data'] = $this->transformer->transform($user, new UserTransformer, 'item');
 
         $this->response_code = 200;
-        goto callback;
-
-        $this->response['status'] = FALSE;
-        $this->response['msg'] = "Invalid account credentials";
-
-        if($login_type == "phone"){
-            $this->response['status_code'] = "INVALID_PHONE_NUMBER";
-        }else{
-            $this->response['status_code'] = "INVALID_EMAIL";
-        }
-        $this->response_code = 412;
 
         callback:
         return response()->json($this->api_response($this->response), $this->response_code);
     }
 
-    public function check_login(PageRequest $request){
+    public function check_login(PageRequest $request)
+    {
         $user = auth($this->guard)->user();
 
-        if(!$user){
+        if (!$user) {
             $this->response['status'] = FALSE;
             $this->response['status_code'] = "UNAUTHORIZED";
             $this->response['msg'] = "Invalid/Expired token. Do refresh token.";
@@ -122,21 +109,22 @@ class AuthenticationController extends Controller
 
         $this->response['status'] = TRUE;
         $this->response['status_code'] = "LOGIN_SUCCESS";
-        $this->response['msg'] = "Welcome {$user->name}!";
-        $this->response['data'] = $this->transformer->transform($user,new UserTransformer,'item');
+        $this->response['msg'] = "Welcome {$user->first_name}!";
+        $this->response['data'] = $this->transformer->transform($user, new UserTransformer, 'item');
 
         $this->response_code = 200;
         callback:
         return response()->json($this->api_response($this->response), $this->response_code);
     }
 
-    public function refresh_token(PageRequest $request){
+    public function refresh_token(PageRequest $request)
+    {
+        /** 
+         * @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $guard
+         **/
 
-        $old_token = $request->bearerToken();
-
-        $user =  auth($this->guard)->user();
-
-        $new_token = auth($this->guard)->refresh();
+        $guard = auth($this->guard);
+        $new_token = $guard->refresh();
 
         $this->response['status'] = TRUE;
         $this->response['status_code'] = "ACCESS_TOKEN_UPDATED";
@@ -150,11 +138,11 @@ class AuthenticationController extends Controller
         return response()->json($this->api_response($this->response), $this->response_code);
     }
 
-    public function logout(PageRequest $request){
-
+    public function logout()
+    {
         $user = auth($this->guard)->user();
-        if($user){
-            auth($this->guard)->logout(true);
+        if ($user) {
+            auth($this->guard)->logout();
 
             $this->response['status'] = TRUE;
             $this->response['status_code'] = "LOGOUT_SUCCESS";
@@ -171,6 +159,5 @@ class AuthenticationController extends Controller
 
         callback:
         return response()->json($this->api_response($this->response), $this->response_code);
-
     }
 }
