@@ -3,7 +3,7 @@
 namespace App\Laravel\Controllers\Portal\CMS;
 
 use App\Laravel\Controllers\Portal\Controller;
-use App\Laravel\Models\CMS\About;
+use App\Laravel\Models\CMS;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,9 @@ class AboutController extends Controller
         $auth = $request->user('web');
 
         $this->data['title_page'] = 'About';
-        $this->data['variables'] = About::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'about')
+            ->get();
 
         return view('portal.cms.about', $this->data);
     }
@@ -31,12 +33,15 @@ class AboutController extends Controller
             foreach ($request->all() as $key => $value) {
                 if ($key === "_token") continue;
 
-                $cms_about = About::where('section', $key)->first();
+                $cms_about = CMS::where('section', $key)
+                    ->where('page', 'about')
+                    ->first();
 
                 if (!$cms_about) {
-                    $cms_about = new About;
+                    $cms_about = new CMS;
                     $cms_about->user_id = $auth->id;
                     $cms_about->section = $key;
+                    $cms_about->page = 'about';
                 }
 
                 $cms_about->content = $value;

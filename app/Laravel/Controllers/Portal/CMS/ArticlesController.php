@@ -3,7 +3,7 @@
 namespace App\Laravel\Controllers\Portal\CMS;
 
 use App\Laravel\Controllers\Portal\Controller;
-use App\Laravel\Models\CMS\Articles;
+use App\Laravel\Models\CMS;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,9 @@ class ArticlesController extends Controller
         $auth = $request->user('web');
 
         $this->data['title_page'] = 'Articles';
-        $this->data['variables'] = Articles::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'articles')
+            ->get();
 
         return view('portal.cms.articles', $this->data);
     }
@@ -31,12 +33,15 @@ class ArticlesController extends Controller
             foreach ($request->all() as $key => $value) {
                 if ($key === "_token") continue;
 
-                $cms_articles = Articles::where('section', $key)->first();
+                $cms_articles = CMS::where('section', $key)
+                    ->where('page', 'articles')
+                    ->first();
 
                 if (!$cms_articles) {
-                    $cms_articles = new Articles;
+                    $cms_articles = new CMS;
                     $cms_articles->user_id = $auth->id;
                     $cms_articles->section = $key;
+                    $cms_articles->page = 'articles';
                 }
 
                 $cms_articles->content = $value;

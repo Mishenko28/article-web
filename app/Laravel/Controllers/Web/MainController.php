@@ -2,10 +2,7 @@
 
 namespace App\Laravel\Controllers\Web;
 
-use App\Laravel\Models\CMS\About;
-use App\Laravel\Models\CMS\Articles;
-use App\Laravel\Models\CMS\Contact;
-use App\Laravel\Models\CMS\Homepage;
+use App\Laravel\Models\CMS;
 use App\Laravel\Requests\PageRequest;
 
 class MainController extends Controller
@@ -22,7 +19,9 @@ class MainController extends Controller
             return view('web.default-pages.home', $this->data);
         }
 
-        $this->data['variables'] = Homepage::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'home')
+            ->get();
 
         return view('web.home', $this->data);
     }
@@ -37,7 +36,9 @@ class MainController extends Controller
             return view('web.default-pages.about', $this->data);
         }
 
-        $this->data['variables'] = About::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'about')
+            ->get();
 
         return view('web.about', $this->data);
     }
@@ -52,7 +53,9 @@ class MainController extends Controller
             return view('web.default-pages.contact', $this->data);
         }
 
-        $this->data['variables'] = Contact::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'contact')
+            ->get();
 
         return view('web.contact', $this->data);
     }
@@ -67,7 +70,9 @@ class MainController extends Controller
             return view('web.default-pages.articles', $this->data);
         }
 
-        $this->data['variables'] = Articles::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'articles')
+            ->get();
 
         return view('web.articles', $this->data);
     }
@@ -82,7 +87,9 @@ class MainController extends Controller
             return view('web.default-pages.article', $this->data);
         }
 
-        $this->data['variables'] = Articles::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'articles')
+            ->get();
 
         return view('web.article', $this->data);
     }

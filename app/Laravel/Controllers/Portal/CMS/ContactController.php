@@ -3,7 +3,7 @@
 namespace App\Laravel\Controllers\Portal\CMS;
 
 use App\Laravel\Controllers\Portal\Controller;
-use App\Laravel\Models\CMS\Contact;
+use App\Laravel\Models\CMS;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,9 @@ class ContactController extends Controller
         $auth = $request->user('web');
 
         $this->data['title_page'] = 'Contact';
-        $this->data['variables'] = Contact::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'contact')
+            ->get();
 
         return view('portal.cms.contact', $this->data);
     }
@@ -31,12 +33,15 @@ class ContactController extends Controller
             foreach ($request->all() as $key => $value) {
                 if ($key === "_token") continue;
 
-                $cms_contact = Contact::where('section', $key)->first();
+                $cms_contact = CMS::where('section', $key)
+                    ->where('page', 'contact')
+                    ->first();
 
                 if (!$cms_contact) {
-                    $cms_contact = new Contact;
+                    $cms_contact = new CMS;
                     $cms_contact->user_id = $auth->id;
                     $cms_contact->section = $key;
+                    $cms_contact->page = 'contact';
                 }
 
                 $cms_contact->content = $value;

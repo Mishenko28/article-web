@@ -3,7 +3,7 @@
 namespace App\Laravel\Controllers\Portal\CMS;
 
 use App\Laravel\Controllers\Portal\Controller;
-use App\Laravel\Models\CMS\Homepage;
+use App\Laravel\Models\CMS;
 use App\Laravel\Requests\PageRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,9 @@ class HomeController extends Controller
         $auth = $request->user('web');
 
         $this->data['title_page'] = 'Home';
-        $this->data['variables'] = Homepage::where('user_id', $auth->id)->get();
+        $this->data['variables'] = CMS::where('user_id', $auth->id)
+            ->where('page', 'home')
+            ->get();
 
         return view('portal.cms.home', $this->data);
     }
@@ -31,12 +33,15 @@ class HomeController extends Controller
             foreach ($request->all() as $key => $value) {
                 if ($key === "_token") continue;
 
-                $cms_homepage = Homepage::where('section', $key)->first();
+                $cms_homepage = CMS::where('section', $key)
+                    ->where('page', 'home')
+                    ->first();
 
                 if (!$cms_homepage) {
-                    $cms_homepage = new Homepage;
+                    $cms_homepage = new CMS;
                     $cms_homepage->user_id = $auth->id;
                     $cms_homepage->section = $key;
+                    $cms_homepage->page = 'home';
                 }
 
                 $cms_homepage->content = $value;

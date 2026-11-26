@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Laravel\Models\CMS;
+namespace App\Laravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 
-class Homepage extends Model
+class CMS extends Model
 {
 
     /**
@@ -13,5 +13,5 @@ class Homepage extends Model
      *
      * @var string
      */
-    protected $table = 'cms_homepage';
+    protected $table = 'cms';
 }
