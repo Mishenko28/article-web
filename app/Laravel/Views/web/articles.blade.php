@@ -12,28 +12,28 @@
 
     {{-- articles section --}}
     <section class="container py-5">
-        <div class="row gy-3 align-items-end justify-content-between mb-4">
+        <div class="row gy-3 mb-4 align-items-end justify-content-between">
             {{-- categories --}}
             <div class="col-lg-8">
                 <p class="text-primary fw-medium">CATEGORIES</p>
                 <div class="d-flex flex-wrap gap-2" aria-label="Filter articles by category">
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none active-categoty"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small active-categoty"
                         aria-current="true" href="#">All</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Culture</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Design</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Cities</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Food</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Essays</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Books</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">Architecture</a>
-                    <a class="fw-bold text-uppercase text-muted border rounded-pill py-2 px-3 small text-decoration-none"
+                    <a class="py-2 px-3 fw-bold text-uppercase text-muted border rounded-pill text-decoration-none small"
                         href="#">History</a>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             {{-- search --}}
             <div class="col-lg-4">
                 <div class="input-group">
-                    <span class="input-group-text py-2" aria-hidden="true"><i class="bi bi-search"></i></span>
+                    <span class="py-2 input-group-text" aria-hidden="true"><i class="bi bi-search"></i></span>
                     <input type="search" class="form-control border-start-0" id="articleSearch" name="q"
                         placeholder="Search stories, authors, topics…" aria-label="Search articles">
                 </div>
