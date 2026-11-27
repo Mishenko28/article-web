@@ -60,10 +60,10 @@
 
     {{-- our story --}}
     <section class="container py-5">
-        <div class="row g-5">
+        <div class="row">
             <div class="col-lg-5">
                 <p class="mb-2 text-primary fw-medium">OUR STORY</p>
-                <h2 class="mb-3 font-title display-6 fw-bold lh-1">From a shared document to a weekly habit.</h2>
+                <h2 class="mb-3 font-title fw-bold lh-1 display-6">From a shared document to a weekly habit.</h2>
                 <p class="lh-lg text-body-secondary">
                     BLOGS.PH started the way a lot of good things do: three friends, one shared document, and a stubborn
                     belief that the stories we cared about were not being told. The first issue went out to forty-two
@@ -79,21 +79,47 @@
             <div class="col-lg-7">
                 @php
                     $milestones = [
-                        ['year' => '2022', 'title' => 'A shared document', 'text' => 'Three friends start a weekly email about the places they love. It has forty-two subscribers, most of them relatives.'],
-                        ['year' => '2023', 'title' => 'The first newsroom', 'text' => 'A tiny office above a laundromat becomes home base. The team publishes its hundredth story and celebrates with instant noodles.'],
-                        ['year' => '2024', 'title' => 'Going regional', 'text' => 'Writers from six cities join the roster. The weekly letter crosses ten thousand readers and the inbox becomes a community.'],
-                        ['year' => '2025', 'title' => 'A wider lens', 'text' => 'Photography and long-form essays become permanent sections. The archive passes two hundred stories from across the country.'],
-                        ['year' => '2026', 'title' => 'Still curious', 'text' => 'The magazine turns four, launches a mentorship program for young writers, and keeps the same rule: the story comes first.'],
+                        [
+                            'year' => '2022',
+                            'title' => 'A shared document',
+                            'text' =>
+                                'Three friends start a weekly email about the places they love. It has forty-two subscribers, most of them relatives.',
+                        ],
+                        [
+                            'year' => '2023',
+                            'title' => 'The first newsroom',
+                            'text' =>
+                                'A tiny office above a laundromat becomes home base. The team publishes its hundredth story and celebrates with instant noodles.',
+                        ],
+                        [
+                            'year' => '2024',
+                            'title' => 'Going regional',
+                            'text' =>
+                                'Writers from six cities join the roster. The weekly letter crosses ten thousand readers and the inbox becomes a community.',
+                        ],
+                        [
+                            'year' => '2025',
+                            'title' => 'A wider lens',
+                            'text' =>
+                                'Photography and long-form essays become permanent sections. The archive passes two hundred stories from across the country.',
+                        ],
+                        [
+                            'year' => '2026',
+                            'title' => 'Still curious',
+                            'text' =>
+                                'The magazine turns four, launches a mentorship program for young writers, and keeps the same rule: the story comes first.',
+                        ],
                     ];
                 @endphp
 
                 <div class="pt-2">
                     @foreach ($milestones as $milestone)
-                        <div class="gap-3 gap-md-4 d-flex">
-                            <div class="pt-1 fw-bold text-primary font-title timeline-year">{{ $milestone['year'] }}</div>
-                            <div class="pb-4 border-start ps-3 ps-md-4 flex-grow-1">
-                                <h3 class="mb-1 h6 fw-bold">{{ $milestone['title'] }}</h3>
-                                <p class="mb-0 small text-body-secondary">{{ $milestone['text'] }}</p>
+                        <div class="d-flex gap-3 gap-md-4">
+                            <div class="pt-1 fw-bold text-primary font-title fs-5 timeline-year">{{ $milestone['year'] }}
+                            </div>
+                            <div class="flex-grow-1 pb-4 ps-3 ps-md-4 border-start">
+                                <h3 class="mb-1 fw-bold h6">{{ $milestone['title'] }}</h3>
+                                <p class="mb-0 text-body-secondary small">{{ $milestone['text'] }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -105,17 +131,37 @@
     {{-- values --}}
     <section class="py-5 border-top border-bottom bg-white">
         <div class="container py-4">
-            <div class="mx-auto mb-5 text-center values-intro">
+            <div class="mb-5 mx-auto text-center values-intro">
                 <p class="mb-2 text-primary fw-medium">WHAT WE STAND FOR</p>
-                <h2 class="mb-0 font-title display-6 fw-bold lh-1">Four things we refuse to compromise on</h2>
+                <h2 class="mb-0 font-title fw-bold lh-1 display-6">Four things we refuse to compromise on</h2>
             </div>
 
             @php
                 $values = [
-                    ['icon' => 'bi-search', 'title' => 'Curiosity first', 'text' => 'We ask one more question than we think we need to. The best stories usually live just past the obvious one.'],
-                    ['icon' => 'bi-people', 'title' => 'People over pageviews', 'text' => 'We measure success by whether a reader finishes a story and tells someone about it, not by how fast they clicked.'],
-                    ['icon' => 'bi-geo-alt', 'title' => 'Local, always', 'text' => 'Every story begins somewhere specific. We name the street, the store, and the person who knows the history.'],
-                    ['icon' => 'bi-unlock', 'title' => 'Open by default', 'text' => 'Our process is not a secret. We share drafts, corrections, and the occasional dead end with our readers.'],
+                    [
+                        'icon' => 'bi-search',
+                        'title' => 'Curiosity first',
+                        'text' =>
+                            'We ask one more question than we think we need to. The best stories usually live just past the obvious one.',
+                    ],
+                    [
+                        'icon' => 'bi-people',
+                        'title' => 'People over pageviews',
+                        'text' =>
+                            'We measure success by whether a reader finishes a story and tells someone about it, not by how fast they clicked.',
+                    ],
+                    [
+                        'icon' => 'bi-geo-alt',
+                        'title' => 'Local, always',
+                        'text' =>
+                            'Every story begins somewhere specific. We name the street, the store, and the person who knows the history.',
+                    ],
+                    [
+                        'icon' => 'bi-unlock',
+                        'title' => 'Open by default',
+                        'text' =>
+                            'Our process is not a secret. We share drafts, corrections, and the occasional dead end with our readers.',
+                    ],
                 ];
             @endphp
 
@@ -123,46 +169,14 @@
                 @foreach ($values as $value)
                     <div class="col-md-6 col-lg-3">
                         <span
-                            class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary value-icon">
+                            class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 value-icon">
                             <i class="bi {{ $value['icon'] }}" aria-hidden="true"></i>
                         </span>
-                        <h3 class="mt-3 mb-2 h5 fw-bold font-title">{{ $value['title'] }}</h3>
-                        <p class="mb-0 small text-body-secondary">{{ $value['text'] }}</p>
+                        <h3 class="mt-3 mb-2 fw-bold font-title h5">{{ $value['title'] }}</h3>
+                        <p class="mb-0 text-body-secondary small">{{ $value['text'] }}</p>
                     </div>
                 @endforeach
             </div>
-        </div>
-    </section>
-
-    {{-- team --}}
-    <section class="container py-5">
-        <div class="mx-auto mb-5 text-center team-intro">
-            <p class="mb-2 text-primary fw-medium">THE PEOPLE</p>
-            <h2 class="mb-3 font-title display-6 fw-bold lh-1">A small team with a wide window</h2>
-            <p class="mb-0 text-body-secondary">
-                Writers, photographers, and editors who would rather be out in the city than in a meeting about it.
-            </p>
-        </div>
-
-        @php
-            $team = [
-                ['name' => 'Maria Santos', 'role' => 'Editor-in-chief', 'bio' => 'Formerly a city reporter. Still keeps a notebook in every bag and a pen in every pocket.'],
-                ['name' => 'Ana Reyes', 'role' => 'Design and visuals', 'bio' => 'Illustrator and type nerd. Believes every page deserves a little breathing room.'],
-                ['name' => 'Paolo Cruz', 'role' => 'Food and culture', 'bio' => 'Will walk three kilometers for a good bowl of noodles, then write about the walk.'],
-                ['name' => 'Lia Mendoza', 'role' => 'Photography', 'bio' => 'Documents the in-between moments: waiting rooms, wet markets, and the last light of the day.'],
-            ];
-        @endphp
-
-        <div class="row g-4">
-            @foreach ($team as $member)
-                <div class="col-6 col-lg-3 text-center">
-                    <img src="{{ asset('assets/images/avatar.avif') }}" alt="{{ $member['name'] }}" width="400"
-                        height="400" class="mb-3 rounded-circle team-avatar">
-                    <h3 class="mb-0 h6 fw-bold">{{ $member['name'] }}</h3>
-                    <p class="mb-2 text-primary small">{{ $member['role'] }}</p>
-                    <p class="mb-0 small text-body-secondary">{{ $member['bio'] }}</p>
-                </div>
-            @endforeach
         </div>
     </section>
 
@@ -172,8 +186,8 @@
             <div class="col-lg-9">
                 <div class="p-4 p-md-5 text-center rounded-2 bg-primary text-light">
                     <p class="mb-2 fw-medium text-uppercase small cta-eyebrow">WRITE FOR US</p>
-                    <h2 class="mb-3 font-title display-6 fw-bold lh-1">Have a story worth telling?</h2>
-                    <p class="mx-auto mb-4 cta-copy">
+                    <h2 class="mb-3 font-title fw-bold lh-1 display-6">Have a story worth telling?</h2>
+                    <p class="mb-4 mx-auto cta-copy">
                         We work with new and experienced writers alike. Send us a short pitch, a rough draft, or just a
                         question you cannot stop thinking about. We read every message.
                     </p>
@@ -196,28 +210,18 @@
 
         .timeline-year {
             min-width: 4rem;
-            font-size: 1.1rem;
         }
 
         .value-icon {
             width: 52px;
             height: 52px;
-            font-size: 1.35rem;
         }
 
-        .team-avatar {
-            width: 96px;
-            height: 96px;
-            object-fit: cover;
-        }
-
-        .values-intro,
-        .team-intro {
+        .values-intro {
             max-width: 640px;
         }
 
-        .values-intro h2,
-        .team-intro h2 {
+        .values-intro h2 {
             text-wrap: balance;
         }
 

@@ -4,11 +4,10 @@
     {{-- intro section --}}
     @include('web._components.intro-section', [
         'title' => 'Contact Blogs.ph',
-        'subtitle' => 'Questions, pitches, or just a hello — we read everything.',
+        'subtitle' => 'Questions, pitches, or just a hello we read everything.',
         'description' =>
             'Whether you have a story idea, a correction, or a question about advertising, the fastest way to reach us is the form below. A real person will get back to you, usually within two business days.',
         'button_text' => 'Read the magazine',
-        'button_url' => route('web.articles'),
     ])
 
     {{-- contact form --}}
@@ -45,8 +44,7 @@
                         <div class="col-12">
                             <label class="form-label fw-medium small" for="contactMessage">MESSAGE</label>
                             <textarea class="py-2 form-control" id="contactMessage" name="message" rows="6"
-                                placeholder="Tell us a little about what you have in mind. Links and drafts are welcome."
-                                required></textarea>
+                                placeholder="Tell us a little about what you have in mind. Links and drafts are welcome." required></textarea>
                         </div>
 
                         <div class="col-12">
@@ -109,7 +107,7 @@
                     </div>
                     <hr>
                     <h3 class="mb-3 h6">Office hours</h3>
-                    <ul class="mb-4 list-unstyled small">
+                    <ul class="list-unstyled small">
                         <li class="d-flex mb-1 justify-content-between">
                             <span>Monday – Friday</span>
                             <span>8:00 AM – 5:00 PM</span>
@@ -123,10 +121,6 @@
                             <span>Closed</span>
                         </li>
                     </ul>
-                    <p class="mb-0 text-body-secondary small">
-                        We are a small team, so replies may take a little longer during the holidays. Thank you for your
-                        patience.
-                    </p>
                 </div>
             </div>
         </div>
@@ -134,10 +128,10 @@
 
     {{-- faq --}}
     <section class="container py-5">
-        <div class="row g-5">
+        <div class="row">
             <div class="col-lg-5">
                 <p class="mb-2 text-primary fw-medium">FAQ</p>
-                <h2 class="mb-3 font-title display-6 fw-bold lh-1">Answers to the things people ask us most.</h2>
+                <h2 class="mb-3 font-title fw-bold lh-1 display-6">Answers to the things people ask us most.</h2>
                 <p class="text-body-secondary">
                     Can not find what you are looking for? Send us a note using the form above, or email us directly. We
                     keep every message in a folder labeled "read soon," and we mean it.
@@ -148,11 +142,31 @@
             <div class="col-lg-7">
                 @php
                     $faqs = [
-                        ['q' => 'How do I pitch a story?', 'a' => 'Send a short pitch through the form above. Tell us what the story is, why it matters now, and why you are the right person to tell it. A paragraph is enough. If we are interested, we will ask for a fuller outline.'],
-                        ['q' => 'Do you pay contributors?', 'a' => 'Yes. We pay for accepted work, and rates depend on length, reporting, and the format. We are happy to discuss the budget before you start writing so there are no surprises.'],
-                        ['q' => 'Can I republish an article?', 'a' => 'Usually, yes. We ask that you wait a few days after publication, credit BLOGS.PH and the author, and link back to the original. Send us a note and we will confirm.'],
-                        ['q' => 'How do I advertise with BLOGS.PH?', 'a' => 'We work with a small number of partners each quarter. We prefer long-term collaborations over one-off banners. Email us with a short description of your brand and what you have in mind.'],
-                        ['q' => 'Where are you based?', 'a' => 'Our office is in Quezon City, but our writers are spread across the country. We meet in person once a month and on video calls more often than anyone would like.'],
+                        [
+                            'q' => 'How do I pitch a story?',
+                            'a' =>
+                                'Send a short pitch through the form above. Tell us what the story is, why it matters now, and why you are the right person to tell it. A paragraph is enough. If we are interested, we will ask for a fuller outline.',
+                        ],
+                        [
+                            'q' => 'Do you pay contributors?',
+                            'a' =>
+                                'Yes. We pay for accepted work, and rates depend on length, reporting, and the format. We are happy to discuss the budget before you start writing so there are no surprises.',
+                        ],
+                        [
+                            'q' => 'Can I republish an article?',
+                            'a' =>
+                                'Usually, yes. We ask that you wait a few days after publication, credit BLOGS.PH and the author, and link back to the original. Send us a note and we will confirm.',
+                        ],
+                        [
+                            'q' => 'How do I advertise with BLOGS.PH?',
+                            'a' =>
+                                'We work with a small number of partners each quarter. We prefer long-term collaborations over one-off banners. Email us with a short description of your brand and what you have in mind.',
+                        ],
+                        [
+                            'q' => 'Where are you based?',
+                            'a' =>
+                                'Our office is in Quezon City, but our writers are spread across the country. We meet in person once a month and on video calls more often than anyone would like.',
+                        ],
                     ];
                 @endphp
 
@@ -174,47 +188,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- visit us --}}
-    <section class="container pb-5">
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-5">
-                <div class="p-4 p-md-5 h-100 rounded-2 bg-primary text-light">
-                    <p class="mb-2 fw-medium text-uppercase small visit-eyebrow">VISIT US</p>
-                    <h2 class="mb-3 font-title display-6 fw-bold lh-1">Come by for coffee and a chat.</h2>
-                    <p class="mb-4">
-                        Our door is open on weekday afternoons. If you are pitching a story, bring the rough version. We
-                        like hearing ideas before they are polished.
-                    </p>
-                    <ul class="mb-0 list-unstyled small">
-                        <li class="mb-2 d-flex gap-2">
-                            <i class="bi bi-geo-alt" aria-hidden="true"></i>
-                            <span>12 Mabini Street, Barangay San Roque, Quezon City</span>
-                        </li>
-                        <li class="mb-2 d-flex gap-2">
-                            <i class="bi bi-clock" aria-hidden="true"></i>
-                            <span>Monday to Friday, 1:00 PM – 5:00 PM</span>
-                        </li>
-                        <li class="d-flex gap-2">
-                            <i class="bi bi-telephone" aria-hidden="true"></i>
-                            <span>+63 (987) 654 3210</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-lg-7">
-                <div
-                    class="p-4 rounded-2 border map-placeholder h-100 d-flex flex-column align-items-center justify-content-center text-center">
-                    <i class="bi bi-geo-alt text-primary display-4" aria-hidden="true"></i>
-                    <p class="mt-3 mb-1 fw-semibold">Find us on the map</p>
-                    <p class="mb-0 small text-muted">
-                        Map embed placeholder. Swap this block for your preferred map provider when you are ready.
-                    </p>
                 </div>
             </div>
         </div>
