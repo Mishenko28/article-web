@@ -2,6 +2,12 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'User account details',
+            'guide_text' =>
+                "This user's website content is edited in the User Portal. Deleting this account also deletes their saved content.",
+        ])
+
         <a class="mb-3 btn btn-secondary" href="{{ route('backoffice.user-management.index') }}">
             <i class="bi bi-arrow-90deg-left"></i>
             Go back
@@ -53,7 +59,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modalTitleId">
-                                        Do you want to delete this user?
+                                        Delete this user account?
                                     </h5>
                                 </div>
                                 <div class="modal-footer">

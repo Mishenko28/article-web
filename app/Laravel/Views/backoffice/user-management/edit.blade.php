@@ -2,6 +2,12 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Editing a user account',
+            'guide_text' =>
+                'Changes to the email or password take effect immediately. The user signs in to the User Portal with these details.',
+        ])
+
         <a class="mb-3 btn btn-secondary" href="{{ route('backoffice.user-management.index') }}">
             <i class="bi bi-arrow-90deg-left"></i>
             Go back
@@ -36,7 +42,6 @@
                                 @error('avatar')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-
                             </div>
                         </div>
 
@@ -89,24 +94,16 @@
                                 </label>
                                 <input required type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" id="edit-email" placeholder="juandelacruz@email.com"
-                                    value="{{ old('email', $record->email) }}" />
+                                    aria-describedby="help-user-email" value="{{ old('email', $record->email) }}" />
                                 @error('email')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="edit-password" class="form-label">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" id="edit-password" />
-                                @error('password')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                <div id="help-user-email" class="form-text">Used to sign in to the User Portal.</div>
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="mb-3 btn btn-primary submit-btn">Save Changes</button>
+                    <button type="submit" class="mb-3 btn btn-primary submit-btn">Save User Account</button>
                     <a class="mb-3 btn btn-danger" href="{{ route('backoffice.user-management.index') }}">
                         Cancel
                     </a>

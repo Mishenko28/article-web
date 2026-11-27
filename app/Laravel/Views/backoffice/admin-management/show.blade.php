@@ -2,13 +2,18 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Admin account details',
+            'guide_text' => 'This admin can sign in to the Admin Portal and manage every account.',
+        ])
+
         <a class="mb-3 btn btn-secondary" href="{{ route('backoffice.admin-management.index') }}">
             <i class="bi bi-arrow-90deg-left"></i>
             Go back
         </a>
         <div class="card">
             <div class="card-header">
-                User Account Details
+                Admin Account Details
             </div>
             <div class="card-body">
                 <div class="d-flex flex-column flex-md-row gap-md-5 mb-3">
@@ -45,7 +50,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modalTitleId">
-                                        Do you want to delete this admin?
+                                        Delete this admin account?
                                     </h5>
                                 </div>
                                 <div class="modal-footer">

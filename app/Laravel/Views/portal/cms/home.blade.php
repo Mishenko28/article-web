@@ -2,6 +2,14 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('portal._components.page-guide', [
+            'guide_title' => 'Editing your Home page',
+            'guide_text' =>
+                'This content appears on your public Home page. Open a section below, make your changes, then save. Changes go live right away.',
+            'guide_link' => route('web.home'),
+            'guide_link_label' => 'View public site',
+        ])
+
         <div class="accordion">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -12,33 +20,38 @@
                 </h2>
                 <div id="panel-hero-section" class="accordion-collapse collapse">
                     <div class="accordion-body">
+                        <p class="mb-3 text-muted small">The first thing visitors see at the top of your Home page.</p>
+
                         <form method="POST">
                             @csrf
 
                             <div class="mb-3">
-                                <label class="form-label">Title</label>
-                                <div id="editor">
-                                    <textarea class="form-control editor" name="title">{{ old('title', $variables->firstWhere('section', 'title')?->content) }}</textarea>
+                                <label class="form-label" for="home-title">Title</label>
+                                <div id="editor-home-title">
+                                    <textarea class="form-control editor" name="title" id="home-title" aria-describedby="help-home-title">{{ old('title', $variables->firstWhere('section', 'title')?->content) }}</textarea>
+                                </div>
+                                <div id="help-home-title" class="form-text">Main headline.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="home-subtitle">Subtitle</label>
+                                <div id="editor-home-subtitle">
+                                    <textarea class="form-control editor" name="subtitle" id="home-subtitle" aria-describedby="help-home-subtitle">{{ old('subtitle', $variables->firstWhere('section', 'subtitle')?->content) }}</textarea>
+                                </div>
+                                <div id="help-home-subtitle" class="form-text">
+                                    One supporting line shown under the headline.
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Subtitle</label>
-                                <div id="editor">
-                                    <textarea class="form-control editor" name="subtitle">{{ old('subtitle', $variables->firstWhere('section', 'subtitle')?->content) }}</textarea>
+                                <label class="form-label" for="home-description">Description</label>
+                                <div id="editor-home-description">
+                                    <textarea class="form-control editor" name="description" id="home-description" aria-describedby="help-home-description">{{ old('description', $variables->firstWhere('section', 'description')?->content) }}</textarea>
                                 </div>
+                                <div id="help-home-description" class="form-text">Shown below the subtitle.</div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <div id="editor">
-                                    <textarea class="form-control editor" name="description">{{ old('description', $variables->firstWhere('section', 'description')?->content) }}</textarea>
-                                </div>
-                            </div>
-
-                            <button class="btn btn-primary">
-                                Submit Changes
-                            </button>
+                            <button class="btn btn-primary">Save Hero Section</button>
                         </form>
                     </div>
                 </div>

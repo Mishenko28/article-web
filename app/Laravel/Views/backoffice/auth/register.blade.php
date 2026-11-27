@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ 'BLOGS.PH Admin | ' . $title_page }}</title>
+    <title>{{ 'BLOGS.PH · Admin Portal | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,8 +26,7 @@
         <form method="POST" class="p-3 form border rounded">
             @csrf
 
-            <h1>Admin Register</h1>
-            <p class="text-muted">Enter your details below to create your account.</p>
+            <h1 class="h3">Admin Portal Registration</h1>
 
             <div class="mb-3">
                 <label for="admin-register-fullname" class="form-label">

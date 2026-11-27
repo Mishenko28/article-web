@@ -26,9 +26,14 @@
                 <i class="bi bi-list"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
-                <a class="dropdown-item" href="#">Action 3</a>
+                <a class="dropdown-item" href="{{ route('backoffice.profile.index') }}">
+                    <i class="bi bi-person"></i>
+                    My Profile
+                </a>
+                <a class="dropdown-item" href="{{ route('web.home') }}">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    View public site
+                </a>
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-item">
                     <a class="btn btn-danger w-100 logout-btn" href="{{ route('backoffice.logout') }}">

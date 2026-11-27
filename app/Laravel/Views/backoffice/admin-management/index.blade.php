@@ -2,9 +2,16 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Managing admins',
+            'guide_text' =>
+                'Admins sign in to this Admin Portal and can manage every account. Only give admin access to trusted people.',
+        ])
+
         <div class="card">
             <div class="card-header">
-                List of Admin Accounts
+                <p class="mb-0 fw-medium">List of Admin Accounts</p>
+                <small class="text-muted">Accounts that can sign in to this Admin Portal.</small>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -40,7 +47,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalTitleId">
-                                                                Do you want to delete this admin?
+                                                                Delete this admin account?
                                                             </h5>
                                                         </div>
                                                         <div class="modal-footer">
@@ -59,16 +66,21 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center">no records found.</td>
+                                    <td colspan="3" class="py-4 text-center">
+                                        <i class="d-block mb-2 fs-4 text-muted bi bi-person-gear" aria-hidden="true"></i>
+                                        <span class="d-block fw-medium">No admin accounts yet.</span>
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
-                {{ $records->links() }}
-            </div>
+            @if ($records->hasPages())
+                <div class="card-footer">
+                    {{ $records->links() }}
+                </div>
+            @endif
         </div>
     </div>
 @endsection

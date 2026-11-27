@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ 'BLOGS.PH Portal | ' . $title_page }}</title>
+    <title>{{ 'BLOGS.PH · User Portal | ' . $title_page }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,8 +30,8 @@
             <form method="POST" class="col-md-6 col-lg-5 p-3 form border rounded shadow">
                 @csrf
 
-                <h1>Register</h1>
-                <p class="text-muted">Enter your details below to create your account.</p>
+                <h1 class="h3">User Portal Registration</h1>
+                <p class="text-muted">Create an account.</p>
 
                 <div class="row g-2">
                     <div class="col-sm-4 mb-3">

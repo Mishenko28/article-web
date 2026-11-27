@@ -2,6 +2,12 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Your admin account',
+            'guide_text' =>
+                'Your name and photo appear in the Admin Portal header. Use Edit Profile to change your details.',
+        ])
+
         <div class="card">
             <div class="d-flex card-header justify-content-between align-items-center">
                 Profile Details

@@ -2,6 +2,12 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Edit your admin account',
+            'guide_text' =>
+                'Update how your name and photo appear in the Admin Portal. Your email and password are used to sign in.',
+        ])
+
         <div class="card">
             <div class="card-header">
                 Edit Profile
@@ -32,7 +38,6 @@
                                 @error('avatar')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-
                             </div>
                         </div>
 
@@ -58,24 +63,28 @@
                                 </label>
                                 <input required type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" id="edit-email" placeholder="juandelacruz@email.com"
-                                    value="{{ old('email', $user->email) }}" />
+                                    aria-describedby="help-admin-profile-email" value="{{ old('email', $user->email) }}" />
                                 @error('email')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                                <div id="help-admin-profile-email" class="form-text">Used to sign in to the Admin Portal.
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="edit-password" class="form-label">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" id="edit-password" />
+                                    name="password" id="edit-password" aria-describedby="help-admin-profile-password" />
                                 @error('password')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                                <div id="help-admin-profile-password" class="form-text">Leave blank to keep your current
+                                    password.</div>
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="mb-3 btn btn-primary submit-btn">Save Changes</button>
+                    <button type="submit" class="mb-3 btn btn-primary submit-btn">Save Profile</button>
                     <a class="mb-3 btn btn-danger" href="{{ route('backoffice.profile.index') }}">
                         Cancel
                     </a>

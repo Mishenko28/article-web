@@ -2,9 +2,16 @@
 
 @section('page-content')
     <div class="container-lg">
+        @include('backoffice._components.page-guide', [
+            'guide_title' => 'Managing users',
+            'guide_text' =>
+                'Users sign in to the User Portal to edit website content. You can view, edit, or delete their accounts here.',
+        ])
+
         <div class="card">
             <div class="card-header">
-                List of User Accounts
+                <p class="mb-0 fw-medium">List of User Accounts</p>
+                <small class="text-muted">Accounts that can sign in to the User Portal.</small>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -42,7 +49,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalTitleId">
-                                                                Do you want to delete this user?
+                                                                Delete this user account?
                                                             </h5>
                                                         </div>
                                                         <div class="modal-footer">
@@ -62,16 +69,23 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="text-center">no records found.</td>
+                                    <td colspan="4" class="py-4 text-center">
+                                        <i class="d-block mb-2 fs-4 text-muted bi bi-people" aria-hidden="true"></i>
+                                        <span class="d-block fw-medium">No user accounts yet.</span>
+                                        <small class="text-muted">People who register from the User Portal will appear
+                                            here.</small>
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
-                {{ $records->links() }}
-            </div>
+            @if ($records->hasPages())
+                <div class="card-footer">
+                    {{ $records->links() }}
+                </div>
+            @endif
         </div>
     </div>
 @endsection
