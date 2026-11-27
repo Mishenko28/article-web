@@ -40,6 +40,12 @@
         flex-shrink: 0;
     }
 
+    .article-card .article-excerpt {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
     .intro-section .intro-title {
         letter-spacing: 0.16em;
     }
@@ -50,5 +56,13 @@
 
     .intro-section .subtitle-2 {
         max-width: 620px;
+    }
+
+    .newsletter-eyebrow {
+        letter-spacing: 0.16em;
+    }
+
+    .newsletter-copy {
+        max-width: 520px;
     }
 </style>

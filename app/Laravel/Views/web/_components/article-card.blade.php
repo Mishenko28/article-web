@@ -1,28 +1,23 @@
-<div class="article-card card col-md-4 border-0">
+<div class="col-md-4 card border-0 article-card">
     <div class="overflow-hidden">
-        <img src="{{ asset('assets/images/articles.avif') }}" class="card-img-top hover-zoom" alt="article image">
+        <img src="{{ asset('assets/images/articles.avif') }}" class="card-img-top hover-zoom" alt="{{ $title }}">
     </div>
-    <div class="card-body px-0">
-        <p class="mb-2 text-primary small">CULTURE</p>
-        <h5 class="card-title fw-bold font-title">Lorem ipsum dolor sit amet.</h5>
-        <p class="card-text text-muted text-truncate">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe repudiandae modi hic architecto culpa! Nemo
-            et ullam illo ipsam cupiditate officia atque id doloremque exercitationem minus commodi, iusto beatae
-            repellendus ducimus aliquid dolor praesentium corrupti totam, doloribus adipisci nihil rem! Quos, corporis
-            neque! Amet neque vitae aut fuga perspiciatis ea.
-        </p>
-        <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
-            <div class="d-flex align-items-center gap-2">
+    <div class="d-flex flex-column px-0 card-body">
+        <p class="mb-2 text-primary small">{{ $category }}</p>
+        <h5 class="card-title fw-bold font-title">{{ $title }}</h5>
+        <p class="card-text text-muted h-100 overflow-hidden article-excerpt">{{ $excerpt }}</p>
+        <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
+            <div class="d-flex gap-2 align-items-center">
                 <img src="{{ asset('assets/images/avatar.avif') }}" alt="avatar" width="400" height="400"
-                    class="avatar rounded-circle">
-                <span class="fw-medium">Juan Dela Cruz</span>
+                    class="rounded-circle avatar">
+                <span class="fw-medium">{{ $author }}</span>
             </div>
             <div>
-                <span class="small text-muted">March 14, 2025</span>
+                <span class="text-muted small">{{ $date }}</span>
                 <span>-</span>
-                <span class="small text-muted"><i class="bi bi-clock"></i> 8 min read</span>
+                <span class="text-muted small"><i class="bi bi-clock"></i> {{ $read_time }}</span>
             </div>
         </div>
-        <a href="{{ route('web.article') }}" class="btn btn-link p-0">Read more</a>
+        <a href="{{ route('web.article') }}" class="btn btn-link me-auto">Read more</a>
     </div>
 </div>

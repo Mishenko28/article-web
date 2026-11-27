@@ -127,6 +127,73 @@
             </div>
         </div>
     </section>
+
+    {{-- faq --}}
+    <section class="container py-5">
+        <div class="row">
+            <div class="col-lg-5">
+                <p class="mb-2 text-primary fw-medium">FAQ</p>
+                <h2 class="mb-3 font-title fw-bold lh-1 display-6">Answers to the things people ask us most.</h2>
+                <p class="text-body-secondary">
+                    Can not find what you are looking for? Send us a note using the form above, or email us directly. We
+                    keep every message in a folder labeled "read soon," and we mean it.
+                </p>
+                <a class="btn btn-outline-primary rounded-0" href="mailto:hello@blogs.ph">Email us directly</a>
+            </div>
+
+            <div class="col-lg-7">
+                @php
+                    $faqs = [
+                        [
+                            'q' => 'How do I pitch a story?',
+                            'a' =>
+                                'Send a short pitch through the form above. Tell us what the story is, why it matters now, and why you are the right person to tell it. A paragraph is enough. If we are interested, we will ask for a fuller outline.',
+                        ],
+                        [
+                            'q' => 'Do you pay contributors?',
+                            'a' =>
+                                'Yes. We pay for accepted work, and rates depend on length, reporting, and the format. We are happy to discuss the budget before you start writing so there are no surprises.',
+                        ],
+                        [
+                            'q' => 'Can I republish an article?',
+                            'a' =>
+                                'Usually, yes. We ask that you wait a few days after publication, credit BLOGS.PH and the author, and link back to the original. Send us a note and we will confirm.',
+                        ],
+                        [
+                            'q' => 'How do I advertise with BLOGS.PH?',
+                            'a' =>
+                                'We work with a small number of partners each quarter. We prefer long-term collaborations over one-off banners. Email us with a short description of your brand and what you have in mind.',
+                        ],
+                        [
+                            'q' => 'Where are you based?',
+                            'a' =>
+                                'Our office is in Quezon City, but our writers are spread across the country. We meet in person once a month and on video calls more often than anyone would like.',
+                        ],
+                    ];
+                @endphp
+
+                <div class="accordion" id="contactFaq">
+                    @foreach ($faqs as $faq)
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#faq{{ $loop->iteration }}"
+                                    aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                    aria-controls="faq{{ $loop->iteration }}">
+                                    {{ $faq['q'] }}
+                                </button>
+                            </h3>
+                            <div id="faq{{ $loop->iteration }}"
+                                class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                data-bs-parent="#contactFaq">
+                                <div class="accordion-body text-body-secondary">{{ $faq['a'] }}</div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @section('page-styles')
